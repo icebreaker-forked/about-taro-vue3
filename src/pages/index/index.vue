@@ -1,4 +1,5 @@
 <template>
+  <view>test compile</view>
   <nut-tabs
     v-model="state.tab4value"
     title-scroll
