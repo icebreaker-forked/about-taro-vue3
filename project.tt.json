@@ -1,0 +1,13 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "nutui-taro-compile-h5-issue",
+  "description": "nutui-taro-compile-h5-issue",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}
