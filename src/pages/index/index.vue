@@ -1,5 +1,5 @@
 <template>
-  <view class="index">css not extract</view>
+  <view :class="$style.index">css not extract</view>
   <nut-tabs
     v-model="state.tab4value"
     title-scroll
@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .index {
   background-color: red;
 }

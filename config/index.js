@@ -4,11 +4,11 @@ import NutUIResolver from '@nutui/nutui-taro/dist/resolver';
 const config = {
   projectName: 'nutui-taro-compile-h5-issue',
   date: '2023-7-13',
-  designWidth (input) {
+  designWidth(input) {
     if (input?.file?.replace(/\\+/g, '/').indexOf('@nutui') > -1) {
-      return 375
+      return 375;
     }
-    return 750
+    return 750;
   },
   deviceRatio: {
     640: 2.34 / 2,
@@ -19,30 +19,29 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: ['@tarojs/plugin-html'],
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   framework: 'vue3',
   compiler: {
     type: 'webpack5',
     prebundle: { enable: false }
-  }, 
+  },
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
-  sass:{
+  sass: {
     data: `@import "@nutui/nutui-taro/dist/styles/variables.scss";`
   },
   mini: {
     webpackChain(chain) {
-      chain.plugin('unplugin-vue-components').use(Components({
-        resolvers: [NutUIResolver({taro: true})]
-      }))
+      chain.plugin('unplugin-vue-components').use(
+        Components({
+          resolvers: [NutUIResolver({ taro: true })]
+        })
+      );
     },
     postcss: {
       pxtransform: {
@@ -58,7 +57,7 @@ const config = {
         }
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
@@ -68,9 +67,11 @@ const config = {
   },
   h5: {
     webpackChain(chain) {
-      chain.plugin('unplugin-vue-components').use(Components({
-        resolvers: [NutUIResolver({taro: true})]
-      }))
+      chain.plugin('unplugin-vue-components').use(
+        Components({
+          resolvers: [NutUIResolver({ taro: true })]
+        })
+      );
     },
     publicPath: '/',
     staticDirectory: 'static',
@@ -78,11 +79,10 @@ const config = {
     postcss: {
       autoprefixer: {
         enable: true,
-        config: {
-        }
+        config: {}
       },
       cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
@@ -90,11 +90,11 @@ const config = {
       }
     }
   }
-}
+};
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+    return merge({}, config, require('./dev'));
   }
-  return merge({}, config, require('./prod'))
-}
+  return merge({}, config, require('./prod'));
+};
