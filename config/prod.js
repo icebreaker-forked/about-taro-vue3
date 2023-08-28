@@ -2,10 +2,15 @@ module.exports = {
   env: {
     NODE_ENV: '"production"'
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   mini: {},
   h5: {
+    terser: {
+      enable: false,
+      config: {
+        // 配置项同 https://github.com/terser/terser#minify-options
+      }
+    }
     /**
      * WebpackChain 插件配置
      * @docs https://github.com/neutrinojs/webpack-chain
@@ -34,4 +39,4 @@ module.exports = {
     //     }))
     // }
   }
-}
+};

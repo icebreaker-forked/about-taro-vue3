@@ -12,6 +12,10 @@
 
 这个库很棒！期待反馈 ❤️（这个问题我也会在 Taro 发一次）
 
-# 问题 2
+# 问题 2（目前已被解决）
 
 Vue3 build:h5 后 css 没有被提取成文件，还是在 js 中
+
+# 问题 3
+
+更改 build:h5 的 webpack splitchunks 配置 chunks:initial 为 all ？

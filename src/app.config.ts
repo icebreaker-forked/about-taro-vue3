@@ -1,6 +1,9 @@
 export default defineAppConfig({
   pages: [
-    'pages/index/index'
+    'pages/demo/index',
+    'pages/index/index',
+    'pages/page1/index',
+    'pages/page2/index'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -8,4 +11,4 @@ export default defineAppConfig({
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
   }
-})
+});
