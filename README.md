@@ -24,7 +24,7 @@ Vue3 build:h5 后 css 没有被提取成文件，还是在 js 中
 
 # 问题 3
 
-错误：weapp-tw + 自定义 webpack5 的 plugin 和 laoder，导致 tailwind 热更新无效（问题在小程序端，h5 不会有这个问题）
+错误：weapp-tw + 自定义 webpack5 的 plugin 和 laoder，导致 weapp-tw 规则转译无效（热重载无效）（问题在小程序端，h5 不会有这个问题）
 
 背景：由于目前 Taro 没有路由拦截功能，我的思路是使用 webpack-virtual-modules 虚拟模块，来进行对页面组件进行条件判断渲染。
 
