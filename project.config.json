@@ -1,15 +1,34 @@
 {
-  "miniprogramRoot": "./dist",
-  "projectname": "nutui-taro-compile-h5-issue",
-  "description": "nutui-taro-compile-h5-issue",
-  "appid": "touristappid",
+  "miniprogramRoot": "dist/",
+  "description": "about-taro-vue3",
+  "appid": "wx85eb92fa5a3fed07",
   "setting": {
     "urlCheck": true,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
     "postcss": false,
-    "minified": false
+    "minified": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "coverView": false,
+    "showShadowRootInWxmlPanel": false,
+    "packNpmRelationList": [],
+    "ignoreUploadUnusedFiles": true
   },
-  "compileType": "miniprogram"
+  "compileType": "miniprogram",
+  "srcMiniprogramRoot": "dist/",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "libVersion": "3.1.0",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  }
 }

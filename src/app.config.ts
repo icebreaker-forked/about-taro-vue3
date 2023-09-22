@@ -1,5 +1,6 @@
 export default defineAppConfig({
   pages: [
+    'pages/weapp-tw/index',
     'pages/demo/index',
     'pages/index/index',
     'pages/page1/index',

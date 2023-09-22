@@ -1,3 +1,9 @@
+yarn install
+
+yarn run dev:weapp
+
+yarn run dev:h5
+
 # Issue
 
 ## 问题 1（目前已被解决）
@@ -18,4 +24,27 @@ Vue3 build:h5 后 css 没有被提取成文件，还是在 js 中
 
 # 问题 3
 
-更改 build:h5 的 webpack splitchunks 配置 chunks:initial 为 all ？
+错误：weapp-tw + 自定义 webpack5 的 plugin 和 laoder，导致 tailwind 热更新无效（问题在小程序端，h5 不会有这个问题）
+
+背景：由于目前 Taro 没有路由拦截功能，我的思路是使用 webpack-virtual-modules 虚拟模块，来进行对页面组件进行条件判断渲染。
+
+如当前组件路径为 `pages/weapp-tw/index.vue`，我会基于它创建一个平级的虚拟文件 `pages/weapp-tw/origin.vue`，这一步是 `./myWebpackPlugin/plugin.js` 做的。
+
+然后 `./myWebpackPlugin/loader.js` 把 `pages/weapp-tw/index.vue` 内容替换成以下内容，用于”路由拦截“
+
+```html
+<script setup lang="ts">
+  import Origin from './origin.vue';
+  const myFlag = true;
+</script>
+<template>
+  <view>success!!!</view>
+  <origin v-if="myFlag" />
+</template>
+```
+
+这样子会导致 `weapp-tw` 热重载失效。比如我在页面 `pages/weapp-tw/index.vue` 修改了样式，小程序没有立即生效。
+
+个人理解：有简单看了下 weapp-tw webpack 的 plugin 实现，照理说 `compilation.hooks.processAssets` && `stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE` 这个阶段应该是在产物都生成之后，再去替换相关 tw 规则，应该不会有什么错误的才对。
+
+还是我的 webpack plguin 的 hooks 需要调整？

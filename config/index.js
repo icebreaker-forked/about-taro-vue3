@@ -1,6 +1,8 @@
 import Components from 'unplugin-vue-components/webpack';
 import NutUIResolver from '@nutui/nutui-taro/dist/resolver';
-
+const { UnifiedWebpackPluginV5 } = require('weapp-tailwindcss/webpack');
+import MyPlugin from '../myWebpackPlugin/plugin';
+import path from 'path';
 const config = {
   projectName: 'nutui-taro-compile-h5-issue',
   date: '2023-7-13',
@@ -42,6 +44,44 @@ const config = {
           resolvers: [NutUIResolver({ taro: true })]
         })
       );
+
+      // myPlugin
+      chain.plugin('myPlugin').use(MyPlugin);
+
+      // myLoader
+      chain.merge({
+        module: {
+          rule: {
+            myLoader: {
+              test: /\.vue$/,
+              include: [
+                path.resolve(__dirname, '../src/pages/weapp-tw/index.vue')
+              ],
+              use: [
+                {
+                  loader: path.resolve(
+                    __dirname,
+                    '../myWebpackPlugin/loader.js'
+                  )
+                }
+              ]
+            }
+          }
+        }
+      });
+
+      chain.merge({
+        plugin: {
+          install: {
+            plugin: UnifiedWebpackPluginV5,
+            args: [
+              {
+                appType: 'taro'
+              }
+            ]
+          }
+        }
+      });
     },
     postcss: {
       pxtransform: {
@@ -72,6 +112,29 @@ const config = {
           resolvers: [NutUIResolver({ taro: true })]
         })
       );
+
+      chain.plugin('myPlugin').use(MyPlugin);
+
+      chain.merge({
+        module: {
+          rule: {
+            myLoader: {
+              test: /\.vue$/,
+              include: [
+                path.resolve(__dirname, '../src/pages/weapp-tw/index.vue')
+              ],
+              use: [
+                {
+                  loader: path.resolve(
+                    __dirname,
+                    '../myWebpackPlugin/loader.js'
+                  )
+                }
+              ]
+            }
+          }
+        }
+      });
     },
     publicPath: '/',
     staticDirectory: 'static',
